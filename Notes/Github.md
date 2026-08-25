@@ -1,0 +1,28 @@
+## Pushing a local project to GitHub
+
+- Initialize a Git repo:
+    - `git init`
+- Stage changes (choose exactly what goes into the next commit):
+    - `git add <filename>` (or `git add .`)
+- Commit the staged changes:
+    - `git commit -m "message"`
+    - Each commit gets a unique ID (SHA-1 hash).
+- View commit history:
+    - `git log`
+- HEAD:
+    - `HEAD` is a pointer that usually refers to the latest commit on the current branch.
+- Switch to a specific commit:
+    - `git checkout <commit-id>`
+- Remove a file:
+    - `rm <filename>`
+- Stop tracking a file but keep it locally:
+    - `git rm --cached <filename>`
+- Ignore files from being tracked:
+    - Add patterns to `.gitignore`
+- Check remotes (before/after adding origin):
+    - `git remote -v`
+- Rename the current branch to `main`:
+    - `git branch -M main`
+- Push to GitHub:
+    - `git push -u origin main`
+    - `-u` sets the upstream tracking branch, so future pushes/pulls can use `git push` / `git pull` without specifying `origin main`.
