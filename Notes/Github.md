@@ -1,28 +1,67 @@
-## Pushing a local project to GitHub
+# Git & GitHub Essentials for SDETs
 
-- Initialize a Git repo:
-    - `git init`
-- Stage changes (choose exactly what goes into the next commit):
-    - `git add <filename>` (or `git add .`)
-- Commit the staged changes:
-    - `git commit -m "message"`
-    - Each commit gets a unique ID (SHA-1 hash).
-- View commit history:
-    - `git log`
-- HEAD:
-    - `HEAD` is a pointer that usually refers to the latest commit on the current branch.
-- Switch to a specific commit:
-    - `git checkout <commit-id>`
-- Remove a file:
-    - `rm <filename>`
-- Stop tracking a file but keep it locally:
-    - `git rm --cached <filename>`
-- Ignore files from being tracked:
-    - Add patterns to `.gitignore`
-- Check remotes (before/after adding origin):
-    - `git remote -v`
-- Rename the current branch to `main`:
-    - `git branch -M main`
-- Push to GitHub:
-    - `git push -u origin main`
-    - `-u` sets the upstream tracking branch, so future pushes/pulls can use `git push` / `git pull` without specifying `origin main`.
+## 1. Local Repository Setup & Daily Workflow
+1. **Initialize local repository**
+   ```bash
+   git init
+   ```
+   *Creates a hidden `.git` folder. The default branch pointer comes into effect after your first commit.*
+
+2. **Configure user identity (one-time setup)**
+   ```bash
+   git config --global user.name "Your Name"
+   git config --global user.email "your.email@example.com"
+   ```
+
+3. **Stage changes**
+   ```bash
+   git add <filename>   # Stage a specific file
+   git add .            # Stage all untracked and modified files
+   ```
+
+4. **Commit staged changes**
+   ```bash
+   git commit -m "Initial commit"
+   ```
+   *Creates a commit object containing metadata (author, timestamp) and a snapshot of staged files. Each commit gets a unique SHA-1 hash (40-character checksum) for data integrity.*
+
+5. **View history & HEAD pointer**
+   ```bash
+   git log
+   ```
+   * **`HEAD`**: A pointer that refers to the current commit/branch you are currently working on.
+   * **`git checkout <commit-id>`**: Switches your working directory state to a specific historical commit.
+
+## 2. File Lifecycle Management & Untracking
+* **Working Directory (Untracked)**: Files not tracked by Git. If deleted via `rm <filename>`, they cannot be recovered by Git.
+* **Stop tracking a file (keep locally)**:
+  ```bash
+  git rm --cached <filename>
+  ```
+* **Ignore unwanted files (`.gitignore`)**: Prevents test reports, logs, and dependencies from being tracked.
+  1. Create `.gitignore`: `touch .gitignore`
+  2. Add ignore patterns (e.g., `newman/`, `target/`, `*.log`, `.env`)
+
+## 3. Connecting & Pushing to GitHub
+
+1. **Verify existing remotes**
+   ```bash
+   git remote -v
+   ```
+
+2. **Link local repository to remote**
+   ```bash
+   git remote add origin <repository-url>
+   ```
+
+3. **Rename current branch to `main`**
+   ```bash
+   git branch -M main
+   ```
+   *`-M` forces the current local branch to be renamed to `main`.*
+
+4. **Push local code to GitHub**
+   ```bash
+   git push -u origin main
+   ```
+   *`-u` (`--set-upstream`) links your local `main` branch to `origin/main`. Future updates only require running `git push` or `git pull`.*
